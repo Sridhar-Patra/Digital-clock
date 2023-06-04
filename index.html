@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;0,700;1,500;1,700&display=swap" rel="stylesheet">
+    <style>
+        body{
+            background: black;
+            padding:0;
+            margin: 0;
+            color: red;
+        }
+        .container{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .clock{
+            font-size: 150px;
+            border: 5px solid green;
+            padding: 10px,10px,10px,10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="clock"> 8:57 PM</span>
+    </div>
+
+    <script>
+       const getTime=() =>{
+                let d=new Date(); //give us date and time 
+                
+                let h=d.getHours();  //get the hour
+
+                let amPm= h>12 ? "PM" : "AM";
+                h = h % 12;
+
+                h = h == 0 ? 12 : h;                //if h=0 then show h=12 otherwise show h=h%12
+                let m=d.getMinutes();       //get the min
+
+                m = m > 9 ? m : "0" + m;        //append 0 if min is single digit
+
+                let s=d.getSeconds();        //get the sec
+
+                s = s > 9 ? s : "0" + s;        //append 0 if min is single digit
+
+                return `${h} : ${m} : ${s}  ${amPm}`;
+
+
+                //simple reurn this
+                //return d.toLocaleTimeString();
+        };
+       
+      
+        setInterval(() =>{
+           let clockOb=document.querySelector(".clock");
+           clockOb.innerHTML=getTime();
+        }, 1000);
+    </script>
+</body>
+</html>
